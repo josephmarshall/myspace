@@ -51,7 +51,7 @@ class Navbar extends React.Component{
         }
       </Menu.Menu>
     </Menu>
-    )
+    )  
   }
 }
 
