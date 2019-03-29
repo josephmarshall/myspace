@@ -5,6 +5,15 @@ Rails.application.routes.draw do
     resources :posts do
       resources :comments
     end
+
+    resources :friendships do
+    end
+
+
   end
-  
+
+  get 'api/get_friends', to: 'api/friendships#get_friends'
+  get 'api/get_friendships', to: 'api/friendships#friendshipsIndex'
+  get 'api/index_of_friend_posts/:friend_id', to: 'api/posts#index_of_friend_posts'
+
 end

@@ -5,6 +5,11 @@ before_action :set_post, only: [:update, :destroy]
     render json: current_user.posts
   end
 
+  def index_of_friend_posts
+    friend = User.find(params[:friend_id])
+    render json: friend.posts
+  end
+
   def create
     post = Post.new(post_params)
     if post.save
@@ -30,7 +35,7 @@ before_action :set_post, only: [:update, :destroy]
   private
   
   def post_params
-    params.require(:post).permit(:title, :body, :likes, :user_id)
+    params.require(:post).permit(:title, :body, :likes, :user_id, :friend_id)
   end
 
   def set_post

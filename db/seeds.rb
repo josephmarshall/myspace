@@ -1,4 +1,8 @@
 User.create(email: "test@test.com", password: "password", image: "http://sapainting.us/wp-content/uploads/the-kramer-painting-kramer-seinfeld-painting-unisex-t-shirt-artkeepsake-redbubble.jpg", name: "Cosmo Kramer", nickname: "Professor Peter van Nostrand")
+User.create(email: "elaine@test.com", password: "password", image: "https://upload.wikimedia.org/wikipedia/en/3/33/Elaine-benes-3707.jpg", name: "Elaine", nickname: "Personal Assistant")
+User.create(email: "george@test.com", password: "password", image: "https://vignette.wikia.nocookie.net/seinfeld/images/7/76/George-costanza.jpg/revision/latest/scale-to-width-down/250?cb=20110406222711", name: "George", nickname: "Yankees Manager")
+User.create(email: "jerry@test.com", password: "password", image: "https://media1.fdncms.com/metrotimes/imager/u/blog2x/4561509/screen_shot_2017-07-14_at_10.32.33_am.png", name: "Jerry", nickname: "Comedian")
+User.create(email: "newman@test.com", password: "password", image: "http://www.seinfeldscripts.com/images/newman1.jpg", name: "Newman", nickname: "Mail Worker")
 
 Post.create(title: "Why the universe is out to get me", body: "There are several reasons why the universe is out to get me.  Just this morning a 
 black cat crossed my path and a white dove flew over my head at precisely the same time.  It is like the forces of good and evel and trying to reconcile
