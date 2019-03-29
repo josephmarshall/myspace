@@ -3,8 +3,7 @@ import UserCard from './UserCard'
 import { AuthConsumer } from '../providers/AuthProvider'
 import Posts from './Posts'
 import { Link, } from 'react-router-dom'
-
-import Friends from './Friends'
+import TopFriends from './TopFriends'
 
 class User extends React.Component {
   render(){
@@ -17,7 +16,7 @@ class User extends React.Component {
               <UserCard data={this.props.auth.user} />
             </Link>
             <div style={{height: "42%"}}>
-              <Friends />
+              <TopFriends />
             </div>
           </div>
             <div style={{width: "100%"}}>

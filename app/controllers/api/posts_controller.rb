@@ -18,7 +18,7 @@ before_action :set_post, only: [:update, :destroy]
     if @post.update(post_params)
       render json: @post
     else
-      render json: { errors: post.error }, status: 422
+      render json: { errors: @post.error }, status: 422
     end
   end
 
