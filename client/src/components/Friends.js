@@ -54,7 +54,7 @@ class Friends extends React.Component {
     const { postSelected, friendPosts, friendForFriendView, friendViewModalOpen, toggleFriendViewModalOpen } = this.state
     return(
       <div style={{display: "flex", justifyContent: "space-between"}}>
-        <div style={{height: "100vh", borderRight: "solid 3px #770202"}}>
+        <div style={{height: "100vh", borderRight: "solid 3px #770202", overflow: "scroll"}}>
           <FriendsPageFriends setFriendForFriendView={this.setFriendForFriendView} friends={this.state.friends} />
           <hr style={{margin: "5px", borderColor: "#770202" }}/>
           <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>

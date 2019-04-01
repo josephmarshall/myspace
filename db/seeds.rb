@@ -34,7 +34,7 @@ user_id: 3, title: "Theres nothing worse than a lousy tipper", body: "I always t
 
 Post.create(user_id: 5, title: "I never work in the rain.", body: "I am a postal worker and I never work in the rain.  I hate getting wet
 delivering mail and I don't care if you do have to wait for a package.  I'm not doing it.  Everyone knows that you can't leave the the
-service once you've entered into the club you are there for life, and I want a life that isn't wet from rain.")ß
+service once you've entered into the club you are there for life, and I want a life that isn't wet from rain.")
 
 Post.create(title: "Why the universe is out to get me", body: "There are several reasons why the universe is out to get me.  Just this morning a 
 black cat crossed my path and a white dove flew over my head at precisely the same time.  It is like the forces of good and evel and trying to reconcile
