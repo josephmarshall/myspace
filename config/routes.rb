@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get 'api/get_friendships', to: 'api/friendships#friendshipsIndex'
   get 'api/index_of_friend_posts/:friend_id', to: 'api/posts#index_of_friend_posts'
 
+  get "*other", to: "static#index"
 end
