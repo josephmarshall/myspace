@@ -51,14 +51,21 @@ deletePost = (id) => {
     .then(res => this.setState({ posts: this.state.posts.filter(p=> p.id !== id)}))
 }
 
+selectPost = () => {
+  return null
+}
   render(){
     return(
       <>
-        <div style={{width: "100%", height: "60vh", padding: "10px", overflow: "scroll"}}>
-        { this.state.posts.map(p=><Post addPost={this.addPost} setPostToEdit={this.setPostToEdit} deletePost={this.deletePost} post={p} />) }
+        <div style={{width: "100%", height: "65vh", padding: "10px", overflow: "scroll"}}>
+        { this.state.posts.map(p=><Post 
+            addPost={this.addPost} 
+            setPostToEdit={this.setPostToEdit} 
+            deletePost={this.deletePost} post={p} 
+            selectPost={this.selectPost} />) }
         <div ref={el => { this.el = el }} />
         </div>
-        <PostForm addPost={this.addPost} editPost={this.editPost} post={this.state.editPost} cancelEdit={this.cancelEdit}/>
+        <PostForm addPost={this.addPost} editPost={this.editPost} post={this.state.editPost} cancelEdit={this.cancelEdit} />
       </>
     )
   }

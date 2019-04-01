@@ -40,14 +40,19 @@ before_action :set_friends, only: [:index, :get_friends]
     end
 
     friendships = Friendship.all
+    current_user_friendships = friendships.select do |f|
+      current_user.id == f.user_id
+    end
+
     @friends = []
-    friendships.each do |f|
+    current_user_friendships.each do |f|
       friend = @people.select do |p|
         p.id == f.friend_id
       end
       @friends << friend
       @friends.flatten!
     end
+    
     @people -= @friends
   end
   

@@ -11,6 +11,7 @@ class Navbar extends React.Component{
     const { auth: { user, handleLogout }, history } = this.props
 
   return(
+    <>
     <Menu inverted style={{ borderRadius: 0, margin: 0, }} >
       <NavLink to="/">
         <Menu.Item ><Icon size="large" name="home" />Home</Menu.Item>
@@ -18,7 +19,7 @@ class Navbar extends React.Component{
       { user &&
       <>
         <NavLink to="/User">
-          <Menu.Item ><Icon size="large" name="newspaper outline" />Posts</Menu.Item>
+          <Menu.Item ><Icon size="large" name="newspaper outline" />My Posts</Menu.Item>
         </NavLink>
         <NavLink to="/Friends">
           <Menu.Item><Icon size="large" name="users"/>Friends</Menu.Item>
@@ -51,6 +52,8 @@ class Navbar extends React.Component{
         }
       </Menu.Menu>
     </Menu>
+    <div style={{width: "100%", height: "8px", backgroundImage: "linear-gradient(to left, gray, #ffb600)"}}></div>
+    </>
     )  
   }
 }

@@ -7,13 +7,15 @@ import { AuthConsumer } from '../providers/AuthProvider'
 import UserData from './UserData'
 import { Modal, } from 'semantic-ui-react'
 import FriendTitle from './FriendTitle'
+import SelectedPost from './SelectedPost'
 
 class Friends extends React.Component {
 
   state = { people: [], friends: [],
             friendViewModalOpen: false,
             friendForFriendView: {},
-            friendPosts: [] }
+            friendPosts: [],
+            postSelected: null }
 
   componentDidMount(){
     this.getFriendsAndPeople()
@@ -41,12 +43,18 @@ class Friends extends React.Component {
       axios.get(`/api/index_of_friend_posts/${friend.id}`)
       .then(res => this.setState({friendPosts: res.data}))
     })
+    this.setState({postSelected: null})
   }
 
+  selectPost = (post) => {
+    this.setState({postSelected: post})
+  } 
+
   render () {
+    const { postSelected, friendPosts, friendForFriendView, friendViewModalOpen, toggleFriendViewModalOpen } = this.state
     return(
       <div style={{display: "flex", justifyContent: "space-between"}}>
-        <div >
+        <div style={{height: "100vh", borderRight: "solid 3px #770202"}}>
           <FriendsPageFriends setFriendForFriendView={this.setFriendForFriendView} friends={this.state.friends} />
           <hr style={{margin: "5px", borderColor: "#770202" }}/>
           <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
@@ -55,14 +63,18 @@ class Friends extends React.Component {
             <People addFriendship={this.addFriendship} people={this.state.people} />
           </div>
         </div>
-        <div style={{width: "80%", height: "90vh", border: "solid black 1px", padding: "20px"}}>
+        <div style={{width: "80%", height: "90vh", padding: "15px"}}>
           <h1 style={{textAlign: "center"}}><FriendTitle data={this.state.friendForFriendView} toggleLarge={this.toggleFriendViewModalOpen} /></h1>
           <hr style={{borderColor: "#770202"}} />
-          <FriendPosts posts={this.state.friendPosts} />
+          { postSelected ? 
+            <SelectedPost post={postSelected} />
+            :
+            <FriendPosts posts={friendPosts} selectPost={this.selectPost} />
+          }
         </div>
-        <Modal onClick={()=>this.toggleFriendViewModalOpen()} open={this.state.friendViewModalOpen} onClose={()=>this.toggleFriendViewModalOpen()}>
+        <Modal onClick={()=>this.toggleFriendViewModalOpen()} open={friendViewModalOpen} onClose={()=>this.toggleFriendViewModalOpen()}>
           <Modal.Content>
-            <UserData data={this.state.friendForFriendView} closeModal={this.state.toggleFriendViewModalOpen}/>
+            <UserData data={friendForFriendView} closeModal={toggleFriendViewModalOpen}/>
           </Modal.Content>
         </Modal>
       </div>
