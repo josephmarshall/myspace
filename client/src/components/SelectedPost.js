@@ -3,6 +3,7 @@ import Post from './Post'
 import Comment from './Comment'
 import CommentForm from './CommentForm'
 import axios from 'axios'
+import { AuthConsumer } from '../providers/AuthProvider'
 
 class SelectedPost extends React.Component {
   state = { comments: [] }
@@ -19,20 +20,24 @@ class SelectedPost extends React.Component {
       .then(res => {this.setState({comments: [res.data, ...this.state.comments]})})
   }
 
+  commentViewHeight = () => (
+    (this.props.post.user_id == this.props.auth.user.id) ? "93vh" : "81vh"
+  )
+
   render(){
     return(
       <>
-      <div style={{height: "80vh", border: "solid 1px gray"}}>
+      <div style={{height: this.commentViewHeight(), overflow: "scroll", width: "100%", padding: "10px 10px 0 10px"}}>
       <Post post={this.props.post} />
-        <div style={{height: "50%", borderLeft: "solid 1px blue", paddingLeft: "20px"}}>
-          <div style={{maxHeight: "60%", overflow: "scroll"}}>
-            {this.state.comments.map(c=> <Comment data={c} />)}
-            <hr />
-          </div>
+        <div style={{paddingLeft: "20px"}}>
           <div>
-            Add Comment:
-            <CommentForm post_id={this.props.post.id} addComment={this.addComment}/>
+            <h5>Comments: </h5>
+            {this.state.comments.map(c=> <Comment data={c} post_id={this.props.post.id} />)}
           </div>
+        </div>
+        <div style={{position: "sticky", bottom: 0, background: "white"}}>
+          Add Comment:
+          <CommentForm post_id={this.props.post.id} addComment={this.addComment} cancel={this.props.cancel}/>
         </div>
       </div>
       </>
@@ -40,4 +45,11 @@ class SelectedPost extends React.Component {
   }
 }
 
-export default SelectedPost
+const ConnectedSelectedPost = (props) => (
+  <AuthConsumer>
+    {auth => <SelectedPost {...props} auth={auth} /> }
+  </AuthConsumer>
+)
+
+
+export default ConnectedSelectedPost

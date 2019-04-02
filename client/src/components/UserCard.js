@@ -6,7 +6,7 @@ const UserCard = ( {data: {name, nickname, image, email, }, } ) => (
   <Card style={{border: "solid black 1px"}}>
     { !image ? 
     <Image src={defaultUserImage} />
-    : <Image src={image} />
+    : <Image src={image} style={{height: "30vh", objectFit: "cover"}} />
     }
     <Card.Content>
       <Card.Header>{name}</Card.Header>

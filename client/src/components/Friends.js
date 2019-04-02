@@ -50,6 +50,10 @@ class Friends extends React.Component {
     this.setState({postSelected: post})
   } 
 
+  cancelSelectedPost = () => {
+    this.setState({postSelected: null})
+  }
+
   render () {
     const { postSelected, friendPosts, friendForFriendView, friendViewModalOpen, toggleFriendViewModalOpen } = this.state
     return(
@@ -67,7 +71,7 @@ class Friends extends React.Component {
           <h1 style={{textAlign: "center"}}><FriendTitle data={this.state.friendForFriendView} toggleLarge={this.toggleFriendViewModalOpen} /></h1>
           <hr style={{borderColor: "#770202"}} />
           { postSelected ? 
-            <SelectedPost post={postSelected} />
+            <SelectedPost post={postSelected} cancel={this.cancelSelectedPost} />
             :
             <FriendPosts posts={friendPosts} selectPost={this.selectPost} />
           }

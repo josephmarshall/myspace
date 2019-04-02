@@ -14,6 +14,11 @@ class Api::CommentsController < ApplicationController
     end
   end
 
+  def user_info_lookup
+    user = User.find(Comment.find(params[:id]).user_id)
+    render json: user
+  end
+
   private
 
   def set_post
@@ -21,7 +26,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :post_id, :likes)
+    params.require(:comment).permit(:body, :post_id, :likes, :user_id)
   end
 
 end

@@ -1,19 +1,25 @@
 import React from 'react'
 import { Form, TextArea, Icon, Button } from 'semantic-ui-react'
-
+import { AuthConsumer, } from '../providers/AuthProvider'
+import { withRouter } from 'react-router-dom'
 
 class CommentForm extends React.Component {
-  state= {body: ""}
+  state= {body: "", user_id: ""}
+
+  componentDidMount(){
+    this.setState({user_id: this.props.auth.user.id})
+  }
 
   handleChange = (e) => this.setState({[e.target.name]: e.target.value})
   
   handleCancel = () => {
-    this.setState( {body: "", } )
+    this.setState( {body: "", user_id: ""} )
+    this.props.cancel()
   }
 
   handleSubmit = (e) => {
     //e.preventDefault()
-    this.props.addComment( {...this.state, post_id: this.props.post_id})
+    this.props.addComment( {...this.state, post_id: this.props.post_id, user_id: this.state.user_id})
     this.setState({body: ""})
   }
 
@@ -37,4 +43,10 @@ render(){
 }
 }
 
-export default CommentForm
+const ConnectedCommentForm = (props) => (
+  <AuthConsumer>
+    { auth => <CommentForm {...props} auth={auth} /> }
+  </AuthConsumer>
+)
+
+export default withRouter(ConnectedCommentForm)

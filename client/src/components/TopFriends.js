@@ -36,7 +36,6 @@ class TopFriends extends React.Component{
   render(){
     return(
         <div style={{padding: "20px"}}>
-          <h2 style={{textAlign: "center", margin: 0 }}>Friends</h2>
           <Table style={{marginTop: 0}} basic='very' celled collapsing>
             <Table.Header>
               <Table.Row>

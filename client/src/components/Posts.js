@@ -62,7 +62,7 @@ selectPost = () => {
             addPost={this.addPost} 
             setPostToEdit={this.setPostToEdit} 
             deletePost={this.deletePost} post={p} 
-            selectPost={this.selectPost} />) }
+            selectPost={this.props.selectPost} />) }
         <div ref={el => { this.el = el }} />
         </div>
         <PostForm addPost={this.addPost} editPost={this.editPost} post={this.state.editPost} cancelEdit={this.cancelEdit} />
